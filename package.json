@@ -22,8 +22,6 @@
   },
   "homepage": "https://github.com/artsy/jquery-fillwidth-lite",
   "devDependencies": {
-    "coffee-script": "*",
-    "underscore": "*",
-    "imagesloaded": "*"
+    "coffee-script": "*"
   }
 }
