@@ -7,12 +7,15 @@ Lines up a single row of images to fit their container. Like a simpler + dumber 
 ## Example
 
 ````javascript
+jqueryFillwidthLite($, _, imagesLoaded)
 $('#el').fillwidthLite()
 ````
 
 With more options
 
 ````javascript
+var jqueryFillwidthLite = require('jquery-fillwidth-lite');
+jqueryFillwidthLite($, _, imagesLoaded)
 $('#el').fillwidthLite({
 
   // What height you want to aim for the image to be

@@ -1,9 +1,12 @@
 <html>
   <head>
     <script src='jquery.js'></script>
+    <script src='underscore.js'></script>
+    <script src='imagesloaded.js'></script>
     <script src='index.js'></script>
     <script type="text/javascript">
       $(function() {
+        jqueryFillwidthLite($, _, imagesLoaded);
         $("#one").fillwidthLite()
         var twoLen = $('#two img').length;
         $("#two").fillwidthLite({
