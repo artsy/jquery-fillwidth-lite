@@ -1,0 +1,31 @@
+{
+  "name": "jquery-fillwidth-lite",
+  "version": "1.0.0",
+  "description": "Lines up a single row of images to fit their container. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "b": "browserify -t coffeeify index.coffee > index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artsy/jquery-fillwidth-lite.git"
+  },
+  "keywords": [
+    "jquery",
+    "fillwidth",
+    "lite"
+  ],
+  "author": "Craig Spaeth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artsy/jquery-fillwidth-lite/issues"
+  },
+  "homepage": "https://github.com/artsy/jquery-fillwidth-lite",
+  "devDependencies": {
+    "coffeeify": "*",
+    "browserify": "*",
+    "underscore": "*",
+    "imagesloaded": "*"
+  }
+}
