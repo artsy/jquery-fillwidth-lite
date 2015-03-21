@@ -1,14 +1,19 @@
-_ = require 'underscore'
-imagesLoaded = require 'imagesloaded'
+$ = window?.$ or null
+_ = window?._ or null
+imagesLoaded = window?.imagesLoaded or null
 
-$.fn.fillwidthLite = (options = {}) ->
-  fillwidth(
-    $(this),
-    (options.targetHeight or 500),
-    (options.done or ->),
-    (options.apply or defaultApply)
-    (options.gutterSize or 0)
-  )
+jqueryFillwidthLite = (a, b, c) ->
+  $ or= a
+  _ or= b
+  imagesLoaded or= c
+  $.fn.fillwidthLite = (options = {}) ->
+    fillwidth(
+      $(this),
+      (options.targetHeight or 500),
+      (options.done or ->),
+      (options.apply or defaultApply)
+      (options.gutterSize or 0)
+    )
 
 defaultApply = (img) ->
   img.$el.width(img.width)
@@ -68,3 +73,9 @@ fillwidth = ($list, targetHeight, done, apply, gutterSize) ->
     apply(img, i, gutterSize) for img, i in imgs
 
     done(imgs)
+
+if module?.exports
+  module.exports = jqueryFillwidthLite
+else
+  window?.jqueryFillwidthLite = jqueryFillwidthLite
+
