@@ -13,7 +13,7 @@ jqueryFillwidthLite = (a, b, c) ->
       (options.done or ->),
       (options.apply or defaultApply),
       (options.gutterSize or 0),
-      (options.resizeUp or false)
+      (options.resizeUp or true)
     )
 
 defaultApply = (img) ->

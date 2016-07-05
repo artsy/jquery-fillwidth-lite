@@ -16,7 +16,7 @@
       if (options == null) {
         options = {};
       }
-      return fillwidth($(this), options.targetHeight || 500, options.done || function() {}, options.apply || defaultApply, options.gutterSize || 0, options.resizeUp || false);
+      return fillwidth($(this), options.targetHeight || 500, options.done || function() {}, options.apply || defaultApply, options.gutterSize || 0, options.resizeUp || true);
     };
   };
 

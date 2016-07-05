@@ -1,10 +1,10 @@
 {
   "name": "jquery-fillwidth-lite",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lines up a single row of images to fit their container. ",
   "main": "index.js",
   "scripts": {
-    "b": "coffee -c index.coffee"
+    "build": "coffee -c index.coffee"
   },
   "repository": {
     "type": "git",

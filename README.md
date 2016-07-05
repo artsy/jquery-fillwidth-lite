@@ -59,7 +59,7 @@ If you are at all interested in using this plugin please leave an issue bugging 
 
 ## Contributing
 
-Please fork the project and submit a pull request with tests. Install node modules `npm install` and run tests with `make test`.
+Please fork the project, build the changes `npm run build`, and submit a pull request.
 
 ## License
 
