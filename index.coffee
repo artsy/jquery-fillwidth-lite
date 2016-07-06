@@ -13,13 +13,13 @@ jqueryFillwidthLite = (a, b, c) ->
       (options.done or ->),
       (options.apply or defaultApply),
       (options.gutterSize or 0),
-      (options.resizeUp or true)
+      (options.dontResizeUp or false)
     )
 
 defaultApply = (img) ->
   img.$el.width(img.width)
 
-fillwidth = ($list, targetHeight, done, apply, gutterSize, resizeUp) ->
+fillwidth = ($list, targetHeight, done, apply, gutterSize, dontResizeUp) ->
   $imgs = $list.find('img')
   imagesLoaded $list[0], =>
 
@@ -44,7 +44,7 @@ fillwidth = ($list, targetHeight, done, apply, gutterSize, resizeUp) ->
 
     # Return the callback if images already fit, and resizeUp is false
     imagesWidth = imgsWidth()
-    return done(imgs) if imagesWidth <= $list.width() and !resizeUp
+    return done(imgs) if imagesWidth <= $list.width() and dontResizeUp
 
     # Decide whether we need to make the row of imgs smaller or larger to
     # fit the width of the container
