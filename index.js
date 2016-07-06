@@ -16,7 +16,7 @@
       if (options == null) {
         options = {};
       }
-      return fillwidth($(this), options.targetHeight || 500, options.done || function() {}, options.apply || defaultApply, options.gutterSize || 0, options.resizeUp || true);
+      return fillwidth($(this), options.targetHeight || 500, options.done || function() {}, options.apply || defaultApply, options.gutterSize || 0, options.dontResizeUp || false);
     };
   };
 
@@ -24,7 +24,7 @@
     return img.$el.width(img.width);
   };
 
-  fillwidth = function($list, targetHeight, done, apply, gutterSize, resizeUp) {
+  fillwidth = function($list, targetHeight, done, apply, gutterSize, dontResizeUp) {
     var $imgs;
     $imgs = $list.find('img');
     return imagesLoaded($list[0], (function(_this) {
@@ -57,7 +57,7 @@
           img.height = targetHeight;
         }
         imagesWidth = imgsWidth();
-        if (imagesWidth <= $list.width() && !resizeUp) {
+        if (imagesWidth <= $list.width() && dontResizeUp) {
           return done(imgs);
         }
         dir = imagesWidth > $list.width() ? -1 : 1;
