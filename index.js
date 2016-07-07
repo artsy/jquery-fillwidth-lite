@@ -45,7 +45,7 @@
           });
         };
         widthDiff = function() {
-          return Math.abs($list.width() - imgsWidth());
+          return $list.width() - imgsWidth();
         };
         resizeHeight = function(img, dir) {
           img.width += (img.width / img.height) * dir;

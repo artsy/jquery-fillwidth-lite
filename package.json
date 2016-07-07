@@ -1,6 +1,6 @@
 {
   "name": "jquery-fillwidth-lite",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Lines up a single row of images to fit their container. ",
   "main": "index.js",
   "scripts": {
