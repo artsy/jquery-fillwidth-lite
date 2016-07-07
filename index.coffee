@@ -32,7 +32,7 @@ fillwidth = ($list, targetHeight, done, apply, gutterSize, dontResizeUp) ->
     imgsWidth = ->
       _.reduce _.map(imgs, (i) -> i.width), (m, n) -> m + n
     widthDiff = ->
-      Math.abs $list.width() - imgsWidth()
+      $list.width() - imgsWidth()
     resizeHeight = (img, dir) ->
       img.width += (img.width / img.height) * dir
       img.height += dir
