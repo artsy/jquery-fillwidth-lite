@@ -31,8 +31,11 @@ fillwidth = ($list, targetHeight, done, apply, gutterSize, dontResizeUp) ->
     # Helpers to do the mathz.
     imgsWidth = ->
       _.reduce _.map(imgs, (i) -> i.width), (m, n) -> m + n
+    totalWhitespace = ->
+      (imgs.length - 1) * gutterSize
+    # Pixels remaining that can be filled. Negative is overflow
     widthDiff = ->
-      $list.width() - imgsWidth()
+      $list.width() - imgsWidth() - totalWhitespace()
     resizeHeight = (img, dir) ->
       img.width += (img.width / img.height) * dir
       img.height += dir
@@ -42,29 +45,20 @@ fillwidth = ($list, targetHeight, done, apply, gutterSize, dontResizeUp) ->
       img.width = img.width * (targetHeight / img.height)
       img.height = targetHeight
 
-    # Return the callback if images already fit, and resizeUp is false
-    imagesWidth = imgsWidth()
-    return done(imgs) if imagesWidth <= $list.width() and dontResizeUp
+    # Return the callback if images already fit, and dontResizeUp is true
+    return done(imgs) if widthDiff() > 0 and dontResizeUp
 
     # Decide whether we need to make the row of imgs smaller or larger to
     # fit the width of the container
-    dir = if imagesWidth > $list.width() then -1 else 1
+    dir = if widthDiff() < 0 then -1 else 1
 
     # Resize each img, maintaining aspect ratio, until the row fits the
     # width of the container
     for i in [0..999]
       for img in imgs
         resizeHeight img, dir
-        break if widthDiff() < 1
-      break if widthDiff() < 1
-
-    # Resize down to accomodate padding
-    totalWhitespace = imgs.length * gutterSize
-    for i in [0..999]
-      for img in imgs
-        resizeHeight img, -1
-        break if imgsWidth() <= $list.width() - totalWhitespace
-      break if imgsWidth() <= $list.width() - totalWhitespace
+        break if widthDiff() > 1
+      break if widthDiff() > 1
 
     # Round off sizes
     for img in imgs
@@ -81,4 +75,3 @@ if module?.exports
   module.exports = jqueryFillwidthLite
 else
   window?.jqueryFillwidthLite = jqueryFillwidthLite
-

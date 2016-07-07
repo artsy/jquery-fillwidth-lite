@@ -29,7 +29,7 @@
     $imgs = $list.find('img');
     return imagesLoaded($list[0], (function(_this) {
       return function() {
-        var dir, i, imagesWidth, img, imgs, imgsWidth, j, k, l, len, len1, len2, len3, len4, o, p, q, r, resizeHeight, totalWhitespace, widthDiff;
+        var dir, i, img, imgs, imgsWidth, j, k, l, len, len1, len2, len3, o, p, resizeHeight, totalWhitespace, widthDiff;
         imgs = $imgs.map(function() {
           return {
             width: $(this).width(),
@@ -44,8 +44,11 @@
             return m + n;
           });
         };
+        totalWhitespace = function() {
+          return (imgs.length - 1) * gutterSize;
+        };
         widthDiff = function() {
-          return $list.width() - imgsWidth();
+          return $list.width() - imgsWidth() - totalWhitespace();
         };
         resizeHeight = function(img, dir) {
           img.width += (img.width / img.height) * dir;
@@ -56,45 +59,31 @@
           img.width = img.width * (targetHeight / img.height);
           img.height = targetHeight;
         }
-        imagesWidth = imgsWidth();
-        if (imagesWidth <= $list.width() && dontResizeUp) {
+        if (widthDiff() > 0 && dontResizeUp) {
           return done(imgs);
         }
-        dir = imagesWidth > $list.width() ? -1 : 1;
+        dir = widthDiff() < 0 ? -1 : 1;
         for (i = k = 0; k <= 999; i = ++k) {
           for (l = 0, len1 = imgs.length; l < len1; l++) {
             img = imgs[l];
             resizeHeight(img, dir);
-            if (widthDiff() < 1) {
+            if (widthDiff() > 1) {
               break;
             }
           }
-          if (widthDiff() < 1) {
+          if (widthDiff() > 1) {
             break;
           }
         }
-        totalWhitespace = imgs.length * gutterSize;
-        for (i = o = 0; o <= 999; i = ++o) {
-          for (p = 0, len2 = imgs.length; p < len2; p++) {
-            img = imgs[p];
-            resizeHeight(img, -1);
-            if (imgsWidth() <= $list.width() - totalWhitespace) {
-              break;
-            }
-          }
-          if (imgsWidth() <= $list.width() - totalWhitespace) {
-            break;
-          }
-        }
-        for (q = 0, len3 = imgs.length; q < len3; q++) {
-          img = imgs[q];
+        for (o = 0, len2 = imgs.length; o < len2; o++) {
+          img = imgs[o];
           img.width = Math.floor(img.width);
           img.height = Math.floor(img.height);
           if (widthDiff() === 0) {
             break;
           }
         }
-        for (i = r = 0, len4 = imgs.length; r < len4; i = ++r) {
+        for (i = p = 0, len3 = imgs.length; p < len3; i = ++p) {
           img = imgs[i];
           apply(img, i, gutterSize);
         }
